@@ -49,7 +49,7 @@ Consider the file `DETI_Dados_Candidatos.xlsx` that contains the information rel
 
 First represent this data using a ColumnChart. In this case since we have several courses a legend should be presented with the chart.	
 
-Now represent the same information using a Line chart. If you are interested in the evolution of the number of student in each course, which chart seems more adequate, a column or a line chart? On the other side which chart would you use to compare the number of student between courses? More [here](https://developers.google.com/chart/interactive/docs/gallery/linechart).
+Now represent the same information using a Line chart. If you are interested in the evolution of the number of student in each course line chart is more adequated. On the other side to compare the number of student between courses, it is expected to use a column chart. More [here](https://developers.google.com/chart/interactive/docs/gallery/linechart).
 
 ## 1.5 Combo charts
 Modify the previous example to present a combo chart like the following figure. Notice that in this visualization we also present the total of candidates in each year. 
