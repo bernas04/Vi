@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 1</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      var geometry = new THREE.BoxGeometry(1, 1, 1);
+      var material1 = new THREE.MeshBasicMaterial({
+        color: 0x00ff0f9,
+      });
+      var material2 = new THREE.MeshBasicMaterial({
+        color: 0x000000,
+        wireframe: true,
+        wireframeLinewidth: 6.0,
+      });
+
+      var cube1 = new THREE.Mesh(geometry, material1);
+      scene.add(cube1);
+      var cube2 = new THREE.Mesh(geometry, material2);
+      scene.add(cube2);
+      camera.position.z = 5;
+
+      function render() {
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+      render();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+        cube1.rotation.x += 0.01;
+        cube1.rotation.y += 0.01;
+        cube2.rotation.x += 0.01;
+        cube2.rotation.y += 0.01;
+      }
+      animate();
+    </script>
+  </body>
+</html>

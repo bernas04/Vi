@@ -37,6 +37,22 @@
             return "rgb(0, 0, " + (d * 10) + ")";
         });
 
+        svg.selectAll("text")
+            .data(dataset)
+            .join("text")
+                .text(function(d) {
+                    return d;
+                })
+                .attr("x", function (d, i) {
+                    return i * (w / dataset.length) + (w / dataset.length) / 2;
+                })
+                .attr("y", function(d) {
+                    return h - (d * 4) + 14;
+                    
+                })
+                .attr("stroke", "#ffffff")
+                .attr("text-anchor", "middle")
+
         
 
         
