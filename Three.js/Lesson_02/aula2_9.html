@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 2</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf5f5f5);
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      //camera.position.y = 5;
+      camera.position.z = 10;
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // GEOMETRIA
+      var geometry = new THREE.BoxGeometry(3, 2, 5);
+      var sphereGeometry = new THREE.SphereGeometry(0.5, 10, 10);
+
+      // MATERIAIS
+      var glassMaterial = new THREE.MeshPhongMaterial({
+        color: 0x006088,
+        opacity: 0.3,
+        transparent: true,
+      });
+      var sphereMaterial = new THREE.MeshPhongMaterial({
+        shading: THREE.SmoothShading,
+      });
+
+      sphereMaterial.color = new THREE.Color(0.5, 0.0, 0.0);
+      sphereMaterial.specular = new THREE.Color(0.7, 0.7, 0.7);
+      sphereMaterial.shininess = 0.0781 * 256;
+      // OBJETOS
+      var cube = new THREE.Mesh(geometry, glassMaterial);
+      var car = new THREE.Group();
+
+      var wheel1 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      wheel1.position.x = -1.5;
+      wheel1.position.y = -1;
+      wheel1.position.z = -2.5;
+
+      var wheel2 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      wheel2.position.x = 1.5;
+      wheel2.position.y = -1;
+      wheel2.position.z = -2.5;
+
+      var wheel3 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      wheel3.position.x = -1.5;
+      wheel3.position.y = -1;
+      wheel3.position.z = 2.5;
+
+      var wheel4 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      wheel4.position.x = 1.5;
+      wheel4.position.y = -1;
+      wheel4.position.z = 2.5;
+
+      car.add(wheel1);
+      car.add(wheel2);
+      car.add(wheel3);
+      car.add(wheel4);
+      car.add(cube);
+
+      scene.add(car);
+
+      var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.y = 5;
+      scene.add(directionalLight);
+
+      var alight = new THREE.AmbientLight(0xffffff);
+      scene.add(alight);
+
+      function render() {
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+      render();
+    </script>
+  </body>
+</html>
